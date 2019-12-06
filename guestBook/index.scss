@@ -1,0 +1,265 @@
+$baseColor: rgb(255, 255, 255);
+$subColorA: rgb(218, 236, 224);
+$subColorB: rgb(186, 218, 207);
+@mixin hoverOpacity($opasity) {
+    &:hover {
+        opacity: $opasity;
+        cursor: pointer;
+    }
+}
+
+html {
+    font-size: 62.5%;
+}
+body {
+    width: 95%;
+    max-width: 50rem;
+    background-color: $baseColor;
+    background-image: url("img/title.png");
+    background-position: 3rem 3rem;
+    background-size: 10rem auto;
+    background-repeat: no-repeat;
+    margin: auto;
+}
+@media screen and (max-width: 800px){
+    body {
+        background-image: url("img/title3.png");
+        background-size: auto 9rem;
+        background-position: center top;
+        padding-top: 5rem;
+    }
+}
+@media screen and (max-width: 480px){
+    body {
+        background-image: url("img/title3.png");
+        background-size: contain;
+        background-position: center top;
+        padding-top: 10%;
+    }
+}
+h1 {
+    font-size: 5rem;
+}
+img.newPostImg {
+    width: 10rem;
+    height: auto;
+    margin: 4rem 0 2rem 0;
+    padding: 1rem;
+    border-bottom: dotted 1px gray;
+    @include hoverOpacity(0.7);
+}
+img.postImg {
+    width: 4rem;
+    height: auto;
+    cursor: pointer;
+    margin: 2rem auto;
+    padding: .5rem;
+    border-bottom: dotted 1px gray;
+    @include hoverOpacity(0.7);
+}
+p {
+    margin: 0;
+    font-size: 1.5rem;
+}
+#post {
+    text-align: center;
+    .postForm {
+        position: relative;
+        display: block;
+        width: 100%;
+        max-width: 50rem;
+        margin-bottom: 5rem;
+        padding-top: 2rem;
+        text-align: center;
+        border-radius: 10px;
+        background-color: $subColorA;
+        input {
+            display: block;
+            margin: 0 auto 1rem auto;
+            width: 40%;
+            text-align: center;
+            &::placeholder {
+                color: #bbb;
+            }
+        }
+        textarea {
+            display: block;
+            margin: auto;
+            width: 80%;
+            height: 10rem;
+            resize: none;
+        }
+        label.backButton {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: .5rem 1rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: gray;
+            @include hoverOpacity(0.5);
+        }
+        p {
+            color: #555;
+            font-size: 1rem;
+        }
+    }
+    .popOut {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+}
+#delDialog {
+    position: fixed;
+    display: block;
+    width: 30%;
+    min-width: 45rem;
+    margin: auto;
+    padding-top: 2rem;
+    text-align: center;
+    border-radius: 10px;
+    background-color: $subColorA;
+}
+//animation
+$noMove: translate3d(0, 0, 0);
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -100px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: $noMove;
+    }
+}
+@keyframes disappear {
+    0% {
+        opacity: 1;
+        transform: $noMove;
+    }
+    90% {
+        opacity: 0;
+        transform: translate3d(0, -40px, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: $noMove;
+    }
+}
+@keyframes addArticle {
+    0% {
+        opacity: 0;
+        transform: $noMove;
+    }
+    30% {
+        opacity: 0;
+        transform: translate3d(100px, 0, 0);
+    }
+    50% {
+        opacity: .2;
+        transform: translate3d(100px, 0, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: $noMove;
+    }
+}
+@keyframes delArticle {
+    0% {
+        opacity: 1;
+        transform: $noMove;
+    }
+    40% {
+        opacity: .5;
+        transform: translate3d(20px, 0, 0);
+    }
+    60% {
+        opacity: 0;
+        transform: translate3d(20px, 0, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: $noMove;
+    }
+}
+.postAnimation-enter-active {
+    animation: appear .5s;
+}
+.postAnimation-leave-active {
+    animation: disappear .4s;
+}
+.addAnimation-enter-active {
+    animation: addArticle 1.5s;
+}
+.addAnimation-leave-active {
+    animation: delArticle 1.3s;
+}
+
+#mainContents {
+    section {
+        margin-bottom: 5rem;
+    }
+    h2 {
+        font-size: 1.7rem;
+        background-color: $subColorB;
+        padding: {
+            left: 2rem;
+        }
+        margin-bottom: .4rem;
+        border-radius: 10px;
+    }
+    article {
+        font-size: 1.2rem;
+        display: block;
+        clear: both;
+        padding: {
+            top: 1.4rem;
+            right: 1rem;
+            bottom: 1rem;
+            left: 1rem;
+        }
+        white-space: pre-line;
+        
+    }
+    button {
+        float: right;
+        margin-right: 1rem;
+        padding: 0 0.4rem;
+        background: none;
+        font-size: 1.1rem;
+        color: gray;
+        border: solid 1px $subColorB;
+        @include hoverOpacity(0.7);
+    }
+    .delButton {
+        float: right;
+        margin-right: 1rem;
+        padding: 0;
+        background: none;
+        font-size: 1rem;
+        color: gray;
+        @include hoverOpacity(0.7);
+    }
+    input.passForm {
+        float: right;
+        margin-right: 1rem;
+        font-size: 0.8rem;
+    }
+    .date {
+        float: right;
+        margin-right: 1rem;
+    }
+    .name {
+        font-weight: bold;
+        float: right;
+        margin-right: 1rem;
+    }
+    .name::after {
+        content: "さんの投稿";
+        padding-left: .3rem;
+        font-weight: normal;
+    }
+}

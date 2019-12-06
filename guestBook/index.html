@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <title>GuestBook</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+<div id="post"> <!-- vue element / 投稿画面・ポップアップ式 -->
+    <img class="newPostImg" src="img/newPost.png" @click="postForm = !postForm, reset()"> <!-- クリックで投稿画面を出現させる -->
+    <div class="popOut"  v-show="postForm" @click="postForm = !postForm"></div>
+    <transition name="postAnimation">
+        <div v-show="postForm" style="display:none"> <!-- ボタンによって出現させる -->
+            <form class="postForm" name="postForm" @submit="postLocation()">
+                <label class="backButton" @click="postForm = !postForm">×</label> <!-- 戻るボタン -->
+                <p>TITLE</p>
+                <input type="text" name="title" v-model="title" placeholder="NO TITLE"> <!-- タイトルを入力 -->
+                <p>NAME</p>
+                <input type="text" name="name" v-model="name" placeholder="NO NAME"> <!-- 名前を入力 -->
+                <p>PASSWORD</p>
+                <input type="password" name="password" v-model="password" placeholder="NO PASSWORD"> <!-- パスワードを入力 -->
+                <p>TEXT</p>
+                <textarea name="text" v-model="text" required></textarea>　<!-- 記事を入力 -->
+                <label> <!-- 投稿ボタン -->
+                    <img class="postImg" src="img/post.png" @click="postAxios()">
+                </label>
+            </form>
+        </div>
+    </transition>
+</div>
+
+<div id="mainContents"> <!-- vue element -->
+    <!-- {{ contents }} -->
+    <transition-group :name="addAnimationSwitch" tag="div">
+    <section v-for="(content, index) in contents" :key="content.id"> <!-- keyを渡して繰り返す -->
+        <h2>{{ content.title }}</h2> <!-- 記事タイトル -->
+        <label @click="delDialog = !delDialog, delNum = index"><!-- 削除ボタン -->
+            <input type="hidden">
+            <p class="delButton">del</p>
+        </label>
+        <span class="date">{{ dateLiteral(content.created_at) }}</span> <!-- 投稿日時 -->
+        <span class="name">{{ content.name }}</span> <!-- 投稿者名 -->
+        <article>{{ content.text }}</article> <!-- 記事 -->
+        <div v-if="delDialog && delNum === index">
+            <div class="delDialog">
+                <form @submit="delButton(content.id)">
+                    <button>del</button>
+                    <input class="passForm" type="password" name="password" v-model="passwordInput">
+                </form>
+            </div>
+        </div>
+    </section>
+    </transition-group>
+</div>
+
+<script src="vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

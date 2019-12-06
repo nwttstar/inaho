@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<title>相性しんだん</title>
+<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+
+<h1>相性しんだん</h1>
+<section>
+    <p>あなたと想い人の相性を診断します。<br>
+    相性が良い場合、勇気を出してデートに誘うことができれば、ひょっとすると付き合えるかもしれません。<br>
+    ただし恋はふつう実りません。傷つく前に諦めるべきです。</p>
+</section>
+<div id="contents">
+    <div v-show="index === -1" class="startContent">
+        <button @click="index++, resultContent = resultContentIn">相性しんだんすたーと</button>
+    </div>
+    <div v-show="index < questions.length">
+        <form class="questionContent" @submit.prevent="count(myScore,youScore), index++" v-for="question in questions.slice(index,index + 1)" :key="question.id">
+            <h3>{{ question.title }}</h3>
+            <div class="selectItem" v-for="(item,indexItem) of question.items">
+                <input type="radio" :name="question.id" :id="indexItem" @click="myScore = item.myPoint, youScore = item.youPoint" required>
+                <label :for="indexItem">{{ item.select }}</label>               
+            </div>
+            <div class="buttonPosition">
+                <button v-if="index === questions.length - 1" type="submit">けっかはっぴょう</button>
+                <button v-else type="submit">つぎのしつもん</button>
+            </div>
+            <p class="qIndex">のこり{{ index + 1 }}/{{ questions.length }}</p>
+        </form>
+    </div>
+    <div v-show="index === questions.length" :class="resultContent">
+        <h3>けっかはっぴょう</h3>
+        <p>結果はさんこうになります。たぶん。</p>
+        <p class="resultMassage">判定 ： {{ result() }}</p>
+        <div class="buttonPosition">
+            <button @click='restart'>はじめにもどる</button>
+        </div>
+    </div>
+</div>
+<script src="vue.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

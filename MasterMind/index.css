@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css?family=Cute+Font&display=swap");
+@import url("https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c&display=swap");
+html {
+  font-size: 125%; }
+
+body {
+  background-color: white;
+  font-family: 'Cute Font', cursive;
+  width: 50%;
+  max-width: 500px;
+  margin: auto; }
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+  margin: 1rem;
+  padding-bottom: 0; }
+
+button {
+  display: block;
+  border: dotted 1px gray;
+  background: none;
+  font-family: 'Cute Font', cursive;
+  font-size: 1rem;
+  margin: .5rem auto; }
+  button.startButton {
+    margin-top: 4rem; }
+
+input {
+  display: block;
+  border: none;
+  background-color: #f8f8ea;
+  font-family: 'Cute Font', cursive;
+  font-size: 1rem;
+  text-align: center;
+  margin: auto; }
+
+textarea {
+  display: block;
+  margin: 1rem auto;
+  text-align: center;
+  font-family: 'Cute Font', cursive;
+  font-size: .8rem;
+  width: 40%;
+  height: 11rem;
+  resize: none; }
+
+.ruleApear {
+  text-align: center;
+  margin: 1rem auto; }
+  .ruleApear span {
+    font-size: .7rem; }
+
+.popOut {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5); }
+
+.rule {
+  position: fixed;
+  display: block;
+  width: 30%;
+  left: 35%;
+  top: 15%;
+  margin: auto;
+  padding: 1.5rem 0;
+  background-color: white;
+  border: double 6px #fde5f7;
+  text-align: center; }
+  .rule p {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: .6rem;
+    font-weight: bold;
+    line-height: 1.2rem; }
+
+.info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  text-align: center; }
+  .info .left {
+    background-color: #e9f5eb;
+    width: 100%;
+    margin: 2px; }
+  .info .blow {
+    background-color: #f0ecfa;
+    margin: 2px;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1; }
+  .info .hit {
+    background-color: #f8e9e9;
+    margin: 2px;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1; }
+
+.result h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 1rem; }
+  .result h2.gameover {
+    color: #c23c3c; }
+  .result h2.clear {
+    color: green; }
+
+.result p {
+  font-size: 1rem;
+  text-align: center; }

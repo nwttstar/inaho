@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<title>MasterMind</title>
+<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+
+<h1>MASTER MIND</h1>
+<div id="app">
+    <button @click="gameStart()" v-show="!start" class="startButton">GAME START!</button>
+    <div v-show="start && !clear && !gameOver">
+        <div class="ruleApear">
+            <span v-on:mouseover="rule = true"><img src="img/ico.gif"> RULE</span>
+        </div>
+        <div v-show="rule">
+            <div class="popOut" v-on:mouseover="rule = false"></div>
+            <div class="rule">
+                <p>Mastar Mindは数字あてゲームと呼ばれるものです。<br>
+                伏せられた4桁の数字（重複なし）を予想し、回答してください。<br>
+                まずは適当な数字を入力してみましょう。<br>
+                10回まで回答できます。</p>
+                <p>LEFTは回答の残り回数です。<br>
+                BLOWは数字が当たっています。<br>
+                HITは数字と位置が当たっています。</p>
+                <p>正解が1067で回答が1637の場合、<br>
+                1,6,7と3つの数字が当たっており、<br>
+                1,7の2つは位置と数字が当たっているので、<br>
+                BLOW:3 HIT:2<br>
+                と表示されるはずです。</p>
+                <p>BLOWとHITの数をよく見て、<br>
+                正解の数字を推理してみてください。</p>
+            </div>
+        </div>
+        <form @submit.prevent="answer()">
+            <input v-model="answerForm" type="tel" maxlength="4" placeholder="INPUT">
+            <button>ANSWER!</button>
+        </form>    
+        <div class="info">
+            <p class="left">LEFT:{{ answerCount }}</p>
+            <p class="blow">BLOW:{{ blowCount }}</p>
+            <p class="hit">HIT:{{ hitCount }}</p>
+            <!--
+            answer{{ slicedNums }}
+            correct{{ correctAnswers }}
+            -->
+        </div>
+        <textarea autocomplete="off">{{ logs }}</textarea>
+    </div>
+    <div v-show="clear" class="result">
+        <p>Correct-Number: {{ correctAnswer }}</p>
+        <h2 class="clear">CLEAR!</h2>
+        <textarea autocomplete="off">{{ logs }}</textarea>
+        <button @click="start = !start, clear = !clear">BACK</button>
+    </div>
+    <div v-show="gameOver" class="result">
+        <p>Correct-Number: {{ correctAnswer }}</p>
+        <h2 class="gameover">GAME OVER!</h2>
+        <textarea autocomplete="off">{{ logs }}</textarea>
+        <button @click="start = !start, gameOver = !gameOver">BACK</button>
+    </div>
+
+</div>
+
+
+<script src="vue.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

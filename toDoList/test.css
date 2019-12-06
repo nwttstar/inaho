@@ -1,0 +1,153 @@
+/* レイアウト */
+body {
+  background-image: url(img/f01.gif);
+  margin: 0;
+}
+div.main {
+  position: relative;
+  background-image: url(img/f01_2.gif);
+  min-height: 100vh;
+  width: 480px;
+  margin: 0 auto;
+}
+@font-face {
+  font-family: KFhimaji;
+  src: url(font/KFhimaji.otf);
+}
+img {
+  margin: 15px auto;
+}
+p {
+  font-family: KFhimaji, serif;
+  color: #E50B50;
+}
+input {
+  font-family: 'Baloo Bhai', KFhimaji;
+  color: #E50B50;
+}
+table{
+  border: none;
+  padding: 10px;
+  left: auto;
+  right: auto;
+}
+td {
+  border: none;
+  padding: 0;
+  width: 5%;
+}
+tr:hover {
+  opacity: 0.7;
+}
+tr.comp:hover {
+  opacity: 1;
+}
+td.comment {
+  width: 50%;
+}
+td.date {
+  width: 20%;
+}
+
+/* footer */
+footer {
+  margin: 0;
+  padding: 0;
+  color: #EE5151;
+  position: absolute;
+  bottom: 2px;
+  right: 5px;
+}
+footer > p {
+  text-align: right;
+  font-size: 12px;
+  color: #EE5151;
+}
+
+/* フォント */
+p.cleared { color: #e88695;}
+p.notCleared { color: #E50B50;}
+p.id{ color: #F23884; text-align: center;}
+p.date {
+  color: #e88695;
+  font-size: 80%;
+  text-align: center;
+}
+p.doneLeft {
+  display: inline;
+  font-size: 15px;
+  color: #F4123C;
+}
+
+/* ボタン */
+#delButton {
+  color: gray;
+  background-color: rgb(0,0,0,0);
+  border-style: none;
+}
+.allDel {
+  float: right;
+  position: relative;
+}
+#delButton:hover {
+  background-color: rgb(0,0,0,0.2);
+}
+.textBox {
+  width: 270px;
+  border-style: dotted;
+  border-color: #f16ba1;
+}
+.post {
+  color: #D0068C;
+  border-style: dotted;
+  border-color: #f16ba1;
+  background-color: rgb(255,255,255,0.5);
+}
+.post:hover {
+  background-color: rgb(255,255,255,0.8);
+}
+.done {
+  color: #D0068C;
+  border-style: dotted;
+  border-color: #f16ba1;
+  background-color: rgb(255,255,255,0.3);
+  margin-top: 10px;
+  padding: 0 auto;
+}
+.done:hover {
+  background-color: rgb(255,255,255,0.5);
+}
+.mouse {
+  cursor: pointer;
+}
+
+/* チェックボックス */
+.checkBox {
+  display: none;
+}
+.checkBoxInput{
+  position: relative;
+}
+.checkBoxInput::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-style: solid;
+  border-width: 0;
+  border-radius: 50%;
+  border-color: #E05A7D;
+  display: block;
+  position: relative;
+  transition-duration: 0.5s;
+}
+.checkBox:checked + .checkBoxInput::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-width: 2px;
+  border-radius: 50%;
+  background-color: #E71A51;
+  border-color: #E71A51;
+  transition-duration: 0.5s;
+
+}
