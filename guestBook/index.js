@@ -22,19 +22,18 @@ var contents = new Vue({
             return String(hourNum);
         },
         delButton(id) {
-            if(this.passwordInput === '01271110'){
-                axios
-                .post(this.delAdress, {
-                    'id': id
-                })
-                .then(response => {
-                    console.log(response)
-                    this.reload();
-                })
-                .catch(error => {
-                    console.log(error)
-                }) 
-            }
+            axios
+            .post(this.delAdress, {
+                'id': id,
+                'password' : this.passwordInput
+            })
+            .then(response => {
+                console.log(response)
+                this.reload();
+            })
+            .catch(error => {
+                console.log(error)
+            }) 
             this.delDialog = false;
             this.passwordInput = '';
         }
@@ -43,7 +42,6 @@ var contents = new Vue({
       reload() {
         if(this.addFirst === true) this.addAnimationSwitch = 'addAnimation';
         this.addFirst = true;
-        let self = this;
         axios
         .get('https://guestbookapi.herokuapp.com/')
         .then(response => {
@@ -70,7 +68,6 @@ var postPop = new Vue({
     },
     methods: {
         postAxios() {
-            let self = this;
             if(!this.name) this.name = '吾輩は猫である。名前はまだない';
             if(!this.title) this.title = '無題';
             axios
