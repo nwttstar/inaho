@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+  <meta charset="UTF-8">
   <title>My diary</title>
   <link rel="stylesheet" type="text/css" href="index.css">
   <?php require_once("config.php"); ?>

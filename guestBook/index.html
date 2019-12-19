@@ -35,26 +35,28 @@
     <transition-group :name="addAnimationSwitch" tag="div">
     <section v-for="(content, index) in contents" :key="content.id"> <!-- keyを渡して繰り返す -->
         <h2>{{ content.title }}</h2> <!-- 記事タイトル -->
-        <label @click="delDialog = !delDialog, delNum = index"><!-- 削除ボタン -->
-            <input type="hidden">
-            <p class="delButton">del</p>
-        </label>
-        <span class="date">{{ dateLiteral(content.created_at) }}</span> <!-- 投稿日時 -->
-        <span class="name">{{ content.name }}</span> <!-- 投稿者名 -->
-        <article>{{ content.text }}</article> <!-- 記事 -->
+        <div class="underBand">
+            <span class="name">{{ content.name }}</span> <!-- 投稿者名 -->
+            <span class="date">{{ dateLiteral(content.created_at) }}</span> <!-- 投稿日時 -->
+            <label @click="delDialog = !delDialog, delNum = index"><!-- 削除ボタン -->
+                <input type="hidden">
+                <p class="delButton">del</p>
+            </label>
+        </div>
         <div v-if="delDialog && delNum === index">
             <div class="delDialog">
-                <form @submit="delButton(content.id)">
-                    <button>del</button>
-                    <input class="passForm" type="password" name="password" v-model="passwordInput">
-                </form>
+                <button @click="delButton(content.id)">del</button>
+                <input class="passForm" type="password" name="password" v-model="passwordInput">
             </div>
         </div>
+        {{ errorDialog('削除に失敗しました。パスワードが違います。') }}
+        <article>{{ content.text }}</article> <!-- 記事 -->
     </section>
     </transition-group>
 </div>
 
 <script src="vue.js"></script>
+
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="index.js"></script>
 </body>

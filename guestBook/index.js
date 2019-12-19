@@ -4,6 +4,7 @@ var contents = new Vue({
         contents: [],
         passwordInput: '',
         delDialog: false,
+        delError: false,
         addAnimationSwitch: '',
         addFirst: false,
         delNum: '',
@@ -24,15 +25,17 @@ var contents = new Vue({
         delButton(id) {
             axios
             .post(this.delAdress, {
-                'id': id,
-                'password' : this.passwordInput
+                'password' : this.passwordInput,
+                'id': id
             })
             .then(response => {
-                console.log(response)
+                console.log(response.status);
                 this.reload();
             })
             .catch(error => {
-                console.log(error)
+                console.log(error);
+                console.log(error.response.status);
+                this.delError = true;
             }) 
             this.delDialog = false;
             this.passwordInput = '';
@@ -49,7 +52,12 @@ var contents = new Vue({
         })
         .catch(error => {
             console.log(error)
+            this.delError = true;
         })
+      },
+      errorDialog(massage) {
+        if(this.delError) alert(massage);
+        this.delError = false;
       }  
     },
     created() {
