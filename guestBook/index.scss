@@ -112,17 +112,6 @@ p {
         left: 0;
     }
 }
-#delDialog {
-    position: fixed;
-    display: block;
-    width: 30%;
-    min-width: 45rem;
-    margin: auto;
-    padding-top: 2rem;
-    text-align: center;
-    border-radius: 10px;
-    background-color: $subColorA;
-}
 //animation
 $noMove: translate3d(0, 0, 0);
 @keyframes appear {
@@ -235,7 +224,7 @@ $noMove: translate3d(0, 0, 0);
         @include hoverOpacity(0.7);
     }
     .delButton {
-        float: right;
+        display: inline;
         margin-right: 1rem;
         padding: 0;
         background: none;
@@ -243,18 +232,22 @@ $noMove: translate3d(0, 0, 0);
         color: gray;
         @include hoverOpacity(0.7);
     }
+    .delDialog {
+        margin-top: .5rem;
+    } 
     input.passForm {
         float: right;
         margin-right: 1rem;
         font-size: 0.8rem;
     }
+    .underBand {
+        text-align: right;
+    }
     .date {
-        float: right;
         margin-right: 1rem;
     }
     .name {
         font-weight: bold;
-        float: right;
         margin-right: 1rem;
     }
     .name::after {

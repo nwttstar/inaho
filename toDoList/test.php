@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <title>test</title>
+<meta charset="UTF-8">
+  <title>toDoList</title>
   <link rel="stylesheet" type="text/css" href="test.css">
   <link href="https://fonts.googleapis.com/css?family=Baloo+Bhai|Kosugi+Maru" rel="stylesheet">
   <?php require_once("config.php"); ?>
