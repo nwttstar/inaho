@@ -2,6 +2,7 @@ var contents = new Vue({
     el: '#mainContents',
     data: {
         contents: [],
+        contentsTemp: [],
         passwordInput: '',
         delDialog: false,
         delError: false,
@@ -9,6 +10,11 @@ var contents = new Vue({
         addFirst: false,
         delNum: '',
         delAdress: 'https://guestbookapi.herokuapp.com/del',
+        indexFrom: 0,
+        indexTo: 7,
+        indexMax: 0,
+        page: 0,
+        pageNowCookie: '',
         dateLiteral(dateStmt){
             let dateSplit = dateStmt.split(/[-T:]/);
             let dateSplited = dateSplit[0] + "-" + dateSplit[1] + "-" + dateSplit[2] + " " + this.jpnTime(dateSplit[3]) + ":" + dateSplit[4];
@@ -42,13 +48,19 @@ var contents = new Vue({
         }
     },
     methods: {
-      reload() {
+      reload(pageIndex) {
         if(this.addFirst === true) this.addAnimationSwitch = 'addAnimation';
+        if(pageIndex === this.pageNowCookie) return;
         this.addFirst = true;
         axios
         .get('https://guestbookapi.herokuapp.com/')
         .then(response => {
-            this.contents = response.data.message;
+            this.indexMax = Math.ceil(response.data.count / 7);
+            this.contentsTemp = response.data.message;
+            this.contents = this.contentsTemp.slice(this.indexFrom, this.indexTo);
+            this.pageNowCookie = Math.floor((this.indexFrom + 1) / 7)
+            this.indexFrom = 0;
+            this.indexTo = 7;
         })
         .catch(error => {
             console.log(error)
@@ -58,7 +70,14 @@ var contents = new Vue({
       errorDialog(massage) {
         if(this.delError) alert(massage);
         this.delError = false;
-      }  
+      },
+      pageNow(pageIndex) {
+        if(pageIndex === this.pageNowCookie) {
+            return 'indexThere';
+        } else {
+            return 'indexList';
+        }
+      },
     },
     created() {
         this.reload();
@@ -101,3 +120,6 @@ var postPop = new Vue({
         }
     }
 })
+
+
+

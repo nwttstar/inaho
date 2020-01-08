@@ -255,4 +255,32 @@ $noMove: translate3d(0, 0, 0);
         padding-left: .3rem;
         font-weight: normal;
     }
+    .index {
+        width: 100%;
+        text-align: center;
+        padding: 0;
+        margin-bottom: 2rem;
+        list-style-type: none;
+        color: rgb(3, 184, 66);
+        li {
+            display: inline;
+            margin: 0 .5rem;
+            &.indexList {
+                @include hoverOpacity(0.7);
+            }
+            &.indexThere {
+                color: gray;
+            }
+        }
+        span {
+            margin: 0 .5rem;
+            font-size: .8rem;
+            &.prevBackAv {
+                @include hoverOpacity(0.7);
+            }
+            &.prevBackUnAv {
+                color: gray;
+            }
+        }
+    }
 }
