@@ -53,6 +53,45 @@
         <article>{{ content.text }}</article> <!-- 記事 -->
     </section>
     </transition-group>
+    <ul class="index">
+        <span v-if="pageNowCookie != 0">
+            <span
+                @click="indexFrom += pageNowCookie * 7 - 7,
+                        indexTo += pageNowCookie * 7 - 7,
+                        addFirst = false,
+                        reload()"
+                class="prevBackAv"
+            >
+                <<
+            </span>
+        </span>
+        <span v-else class="prevBackUnAv">
+            <<
+        </span>
+        <li 
+            v-for="(page, pageIndex) in indexMax"
+            @click="indexFrom += (page - 1) * 7, indexTo += (page - 1) * 7,
+                    addFirst = false,
+                    reload(pageIndex)"
+            :class="pageNow(pageIndex)"
+        >
+            {{ page }}
+        </li>
+        <span v-if="(pageNowCookie + 1) != indexMax">
+            <span
+                @click="indexFrom += pageNowCookie * 7 + 7,
+                        indexTo += pageNowCookie * 7 + 7,
+                        addFirst = false,
+                        reload()"
+                class="prevBackAv"
+            >
+                >>
+            </span>
+        </span>
+        <span v-else class="prevBackUnAv">
+            >>
+        </span>
+    </ul>
 </div>
 
 <script src="vue.js"></script>

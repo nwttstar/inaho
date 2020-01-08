@@ -307,3 +307,27 @@ p {
   content: "さんの投稿";
   padding-left: .3rem;
   font-weight: normal; }
+
+#mainContents .index {
+  width: 100%;
+  text-align: center;
+  padding: 0;
+  margin-bottom: 2rem;
+  list-style-type: none;
+  color: #03b842; }
+  #mainContents .index li {
+    display: inline;
+    margin: 0 .5rem; }
+    #mainContents .index li.indexList:hover {
+      opacity: 0.7;
+      cursor: pointer; }
+    #mainContents .index li.indexThere {
+      color: gray; }
+  #mainContents .index span {
+    margin: 0 .5rem;
+    font-size: .8rem; }
+    #mainContents .index span.prevBackAv:hover {
+      opacity: 0.7;
+      cursor: pointer; }
+    #mainContents .index span.prevBackUnAv {
+      color: gray; }
